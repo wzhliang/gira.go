@@ -39,7 +39,7 @@ func (p Policy) Check(ctx *context.Context) bool {
 			ret = false
 			break
 		} else {
-			fmt.Printf("    ✔️✅\n")
+			fmt.Printf("    ️✅\n")
 		}
 	}
 	return ret
