@@ -31,7 +31,7 @@ func (p Policy) Check(ctx *context.Context) bool {
 	ret := true
 	for _, e := range p.pols {
 		if e.Message(ctx) != "" {
-			fmt.Printf("%s ...", e.Message(ctx))
+			fmt.Printf("%s ", e.Message(ctx))
 		}
 		if !e.Check(ctx) {
 			fmt.Printf("    ❌\n")
@@ -39,7 +39,7 @@ func (p Policy) Check(ctx *context.Context) bool {
 			ret = false
 			break
 		} else {
-			fmt.Printf("    ✔️\n")
+			fmt.Printf("    ✔️✅\n")
 		}
 	}
 	return ret
