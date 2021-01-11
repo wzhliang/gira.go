@@ -50,7 +50,7 @@ func (mc *MergeCmd) Run(cmd *CmdContext) error {
 	Info("Merging PR...")
 	err = cmd.gte.MergePR(c)
 	if err != nil {
-		fmt.Printf("Failed to merge. Please check at %s", c.PR.URL)
+		fmt.Printf("Failed to merge. Please check PR at %s\n", c.PR.URL)
 		return err
 	}
 	Info("Updating JIRA issue...")

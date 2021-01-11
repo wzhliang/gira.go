@@ -27,15 +27,12 @@ var cli struct {
 
 func kongMain(conf *config.Config, j *jira.Jira, g *gitee.Gitee, c *context.Context) {
 	ctx := kong.Parse(&cli)
-	err := ctx.Run(&CmdContext{
+	_ = ctx.Run(&CmdContext{
 		jra:  j,
 		gte:  g,
 		ctx:  c,
 		conf: conf,
 	})
-	if err != nil {
-		fmt.Printf("%v", err)
-	}
 }
 
 // Info ...
