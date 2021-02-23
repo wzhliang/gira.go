@@ -5,7 +5,9 @@ package main
 import (
 	"errors"
 	"fmt"
+	"reflect"
 
+	"github.com/wzhliang/gira/pkg/config"
 	"github.com/wzhliang/gira/pkg/git"
 )
 
@@ -64,9 +66,10 @@ func (sc *FinishCmd) Run(cmd *CmdContext) error {
 		return err
 	}
 	Info("Updating JIRA issue...")
+	conf := reflect.Indirect(reflect.ValueOf(cmd.conf)).FieldByName(c.Issue.Project).Interface()
 	err = cmd.jra.UpdateIssue(c,
 		fmt.Sprintf("PR created: %s", c.PR.URL),
-		fmt.Sprintf("%d", cmd.conf.YUN.Ready_for_test))
+		fmt.Sprintf("%d", conf.(config.Status).Ready_for_test))
 	if err != nil {
 		fmt.Printf("Uanble to update issue.")
 		return err

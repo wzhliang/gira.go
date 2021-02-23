@@ -7,6 +7,13 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+type Status struct {
+	In_progress    uint
+	Done           uint
+	Ready_for_test uint
+	Reopen         uint
+}
+
 // Config ...
 type Config struct {
 	Jira struct {
@@ -14,18 +21,9 @@ type Config struct {
 		Passwd string
 		Url    string
 	}
-	YUN struct {
-		In_progress    uint
-		Done           uint
-		Ready_for_test uint
-		Reopen         uint
-	}
-	CLOUD struct {
-		In_progress    uint
-		Done           uint
-		Ready_for_test uint
-		Reopen         uint
-	}
+	YUN   Status
+	CLOUD Status
+	ZHY   Status
 	Gitee struct {
 		User  string
 		Token string

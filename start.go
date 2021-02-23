@@ -3,7 +3,9 @@ package main
 import (
 	"errors"
 	"fmt"
+	"reflect"
 
+	"github.com/wzhliang/gira/pkg/config"
 	"github.com/wzhliang/gira/pkg/git"
 )
 
@@ -29,7 +31,8 @@ func (sc *StartCmd) Run(cmd *CmdContext) error {
 	}
 	// update issue happens before checking...
 	// right now we're relying on webhook
-	cmd.jra.UpdateIssue(c, "Starting ...", fmt.Sprintf("%d", cmd.conf.YUN.In_progress))
+	conf := reflect.Indirect(reflect.ValueOf(cmd.conf)).FieldByName(c.Issue.Project).Interface()
+	cmd.jra.UpdateIssue(c, "Starting ...", fmt.Sprintf("%d", conf.(config.Status).In_progress))
 
 	cont := Policy{}.
 		Add(Enforcer(IssueStatusChecker{})).
