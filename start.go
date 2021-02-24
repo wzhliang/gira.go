@@ -54,7 +54,7 @@ func (sc *StartCmd) Run(cmd *CmdContext) error {
 	}
 	Info("Switching to PR branch...")
 	git.CheckoutBranch(c.Issue.ID)
-	Info("You're all set. 请开始你的表演．．．")
+	Info("You're all set. 请开始你的表演☀️")
 
 	return nil
 }

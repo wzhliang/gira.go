@@ -1,3 +1,5 @@
 1. remove _jra, _gte etc from checkers
 1. hard-coded YUN project
 1. actively create branch
+1. revert back to Open status when start failed
+1. check rebase again before merging
