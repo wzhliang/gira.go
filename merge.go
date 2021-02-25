@@ -3,7 +3,10 @@ package main
 import (
 	"errors"
 	"fmt"
+	"reflect"
 	"strconv"
+
+	"github.com/wzhliang/gira/pkg/config"
 )
 
 // MergeCmd ...
@@ -54,8 +57,9 @@ func (mc *MergeCmd) Run(cmd *CmdContext) error {
 		return err
 	}
 	Info("Updating JIRA issue...")
+	conf := reflect.Indirect(reflect.ValueOf(cmd.conf)).FieldByName(c.Issue.Project).Interface()
 	cmd.jra.UpdateIssue(c,
 		fmt.Sprintf("PR %s signed off by %s and %s", c.PR.ID, c.PR.Owners[0], c.PR.Owners[1]),
-		fmt.Sprintf("%d", cmd.conf.YUN.Done))
+		fmt.Sprintf("%d", conf.(config.Status).Done))
 	return nil
 }
